@@ -1,0 +1,16 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+body{
+    background-color: azure;
+}
+#sketch-area{
+    display: flex;
+    flex-wrap:wrap;
+    margin:100px auto;/*center*/
+    background-color: white;
+}
+.cell{
+    border:1px solid whitesmoke;
+}
