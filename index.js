@@ -6,6 +6,10 @@ const sketchArea=document.querySelector('#sketch-area');
 sketchArea.style.width=`${GRIDSIZE}px`;
 sketchArea.style.height=`${GRIDSIZE}px`;
 
+function setBgColor(){
+    this.style.backgroundColor='black';
+}
+
 function createDivs(){
     for (let i=0;i<(rows*cols);i++){
         const div=document.createElement('div');
@@ -14,6 +18,9 @@ function createDivs(){
         div.classList.add('cell');
 
         sketchArea.appendChild(div);
+
+        div.addEventListener("mouseover",setBgColor);
     }
 }
 createDivs();
+
