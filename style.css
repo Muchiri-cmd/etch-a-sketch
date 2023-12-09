@@ -8,9 +8,20 @@ body{
 #sketch-area{
     display: flex;
     flex-wrap:wrap;
-    margin:100px auto;/*center*/
+    margin:15px auto 0px auto;/*center*/
     background-color: white;
 }
 .cell{
     border:1px solid whitesmoke;
 }
+#slider-container{
+    font-size:14px;
+    text-align:center;
+}
+.slider{
+    height:8px;
+}
+
+
+
+

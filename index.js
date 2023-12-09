@@ -12,10 +12,9 @@ sketchArea.style.width=sketchArea.style.height=`${GRIDSIZE}px`;
 function setBgColor(){
     this.style.backgroundColor='black';
 }
-
-function createDivs(){
+function createDivs(squaresPerSide){
     const numofSquares = `${squaresPerSide * squaresPerSide}`;
-    
+
     for (let i=0;i<(numofSquares);i++){
         const div=document.createElement('div');
         div.style.width=div.style.height=`${(GRIDSIZE / squaresPerSide)-2}px`
@@ -27,5 +26,16 @@ function createDivs(){
 
     }
 }
-createDivs();
+function removeDivs(){
+    while (sketchArea.firstChild){
+        sketchArea.removeChild(sketchArea.firstChild);
+    }
+}
 
+slider.oninput =function(){
+    let sliderPara=`${this.value} x ${this.value} (Resoluton)`;
+    sliderValue.innerHTML = sliderPara;
+    removeDivs();
+    createDivs(this.value);
+}
+createDivs(16);
