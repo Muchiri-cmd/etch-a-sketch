@@ -1,25 +1,30 @@
 const GRIDSIZE=600;
-let rows=16;
-let cols=16;
+let squaresPerSide=16;
 
 const sketchArea=document.querySelector('#sketch-area');
-sketchArea.style.width=`${GRIDSIZE}px`;
-sketchArea.style.height=`${GRIDSIZE}px`;
+const sliderContainer=document.querySelector('#slider-container');
+const slider=document.querySelector('#slider');
+
+const sliderValue=document.querySelector('#slider-value');
+sliderValue.textContent=`${slider.value} x ${slider.value} (Resolution)`;
+sketchArea.style.width=sketchArea.style.height=`${GRIDSIZE}px`;
 
 function setBgColor(){
     this.style.backgroundColor='black';
 }
 
 function createDivs(){
-    for (let i=0;i<(rows*cols);i++){
+    const numofSquares = `${squaresPerSide * squaresPerSide}`;
+    
+    for (let i=0;i<(numofSquares);i++){
         const div=document.createElement('div');
-        div.style.width=`${Math.floor(GRIDSIZE/cols)-2}px`;//minus 2 for divborders
-        div.style.height=`${Math.floor(GRIDSIZE/rows)-2}px`;
+        div.style.width=div.style.height=`${(GRIDSIZE / squaresPerSide)-2}px`
         div.classList.add('cell');
 
         sketchArea.appendChild(div);
 
         div.addEventListener("mouseover",setBgColor);
+
     }
 }
 createDivs();
