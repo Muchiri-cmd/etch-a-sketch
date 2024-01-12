@@ -1,5 +1,6 @@
 const GRIDSIZE=600;
 let squaresPerSide=16;
+let color='black';
 
 const sketchArea=document.querySelector('#sketch-area');
 const sliderContainer=document.querySelector('#slider-container');
@@ -10,7 +11,15 @@ sliderValue.textContent=`${slider.value} x ${slider.value} (Resolution)`;
 sketchArea.style.width=sketchArea.style.height=`${GRIDSIZE}px`;
 
 function setBgColor(){
-    this.style.backgroundColor='black';
+    if(color!=='random'){
+        this.style.backgroundColor=color;
+    }else{
+        this.style.backgroundColor=`hsl(${Math.random() * 360},100%,50%)`;
+    }
+    
+}
+function changeBgColor(choice){
+    color=choice;
 }
 function createDivs(squaresPerSide){
     const numofSquares = `${squaresPerSide * squaresPerSide}`;
@@ -26,16 +35,17 @@ function createDivs(squaresPerSide){
 
     }
 }
-function removeDivs(){
+function reset(){
     while (sketchArea.firstChild){
         sketchArea.removeChild(sketchArea.firstChild);
     }
+    createDivs(16);
 }
-
 slider.oninput =function(){
     let sliderPara=`${this.value} x ${this.value} (Resoluton)`;
     sliderValue.innerHTML = sliderPara;
     removeDivs();
     createDivs(this.value);
 }
+
 createDivs(16);
