@@ -1,4 +1,4 @@
-const GRIDSIZE=600;
+const GRIDSIZE=900;
 let squaresPerSide=16;
 let color='black';
 
@@ -9,6 +9,9 @@ const slider=document.querySelector('#slider');
 const sliderValue=document.querySelector('#slider-value');
 sliderValue.textContent=`${slider.value} x ${slider.value} (Resolution)`;
 sketchArea.style.width=sketchArea.style.height=`${GRIDSIZE}px`;
+
+
+
 
 function setBgColor(){
     if(color!=='random'){
@@ -24,15 +27,12 @@ function changeBgColor(choice){
 function createDivs(squaresPerSide){
     const numofSquares = `${squaresPerSide * squaresPerSide}`;
 
-    for (let i=0;i<(numofSquares);i++){
+    for (let i=0;i<numofSquares;i++){
         const div=document.createElement('div');
-        div.style.width=div.style.height=`${(GRIDSIZE / squaresPerSide)-2}px`
+        div.style.width=div.style.height=`${(GRIDSIZE / squaresPerSide)-3.2}px`
         div.classList.add('cell');
-
         sketchArea.appendChild(div);
-
         div.addEventListener("mouseover",setBgColor);
-
     }
 }
 function reset(){
@@ -40,12 +40,17 @@ function reset(){
         sketchArea.removeChild(sketchArea.firstChild);
     }
     createDivs(16);
+    sliderValue.textContent=`16 x 16 (Resolution)`;
 }
-slider.oninput =function(){
+function removeDivs(){
+    while (sketchArea.firstChild){
+        sketchArea.removeChild(sketchArea.firstChild);
+    }
+}
+slider.oninput = function(){
     let sliderPara=`${this.value} x ${this.value} (Resoluton)`;
     sliderValue.innerHTML = sliderPara;
     removeDivs();
     createDivs(this.value);
 }
-
 createDivs(16);
